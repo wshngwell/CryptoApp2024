@@ -1,14 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.example.cryptoapp2024"
+    namespace = "com.example.cryptoappaugust2024"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.cryptoapp2024"
+        applicationId = "com.example.cryptoappaugust2024"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -45,4 +46,29 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //add dagger2
+    implementation (libs.dagger)
+    kapt (libs.dagger.compiler)
+
+    //add Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    //add Retrofit
+    implementation (libs.retrofit)
+
+    //add Glide
+    implementation (libs.glide)
+
+    //add Coroutines
+    implementation (libs.kotlinx.coroutines.android)
+
+    //add viewModel
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.livedata)
+    annotationProcessor(libs.androidx.lifecycle.compiler)
+
+
 }
