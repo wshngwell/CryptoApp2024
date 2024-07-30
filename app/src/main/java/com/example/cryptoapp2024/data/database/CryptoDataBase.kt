@@ -4,10 +4,12 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.cryptoapp2024.data.database.DBmodel.CoinFullInfoDb
 
-@Database()
+@Database(entities = [CoinFullInfoDb::class], version = 1)
 abstract class CryptoDataBase : RoomDatabase() {
 
+    abstract fun getCryptoDao(): CryptoDao
 
     companion object {
         private val LOCK = Any()
