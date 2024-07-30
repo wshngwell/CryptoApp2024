@@ -71,5 +71,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata)
     annotationProcessor(libs.androidx.lifecycle.compiler)
 
+    implementation ("androidx.work:work-runtime-ktx:$2.9.0")
 
 }
