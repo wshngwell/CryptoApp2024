@@ -2,7 +2,10 @@ package com.example.cryptoapp2024.data.worker
 
 import android.content.Context
 import androidx.work.CoroutineWorker
+import androidx.work.OneTimeWorkRequest
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
+import androidx.work.workDataOf
 import com.example.cryptoapp2024.data.database.CryptoDao
 import com.example.cryptoapp2024.data.network.ApiService
 import com.example.cryptoapp2024.data.network.Mapper
@@ -35,5 +38,13 @@ class RefreshDataWorker(
             delay(10000)
         }
 
+    }
+    companion object{
+        const val REFRESH_DATA = "REFRESH_DATA"
+
+        fun getOneTimeWorkRequest():OneTimeWorkRequest{
+            return OneTimeWorkRequestBuilder<RefreshDataWorker>()
+                .build()
+        }
     }
 }
