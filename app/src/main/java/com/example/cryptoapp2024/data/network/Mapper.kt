@@ -1,6 +1,7 @@
 package com.example.cryptoapp2024.data.network
 
 import android.util.Log
+import com.example.cryptoapp2024.data.database.DBmodel.CoinFullInfoDb
 import com.example.cryptoapp2024.data.network.DtoClasses.GetCoinsNameDto.TopCoinsByMarketCapJsonAnswerDto
 import com.example.cryptoapp2024.data.network.DtoClasses.GetFullDataOfCoinsDto.CoinFullInfoDto
 import com.example.cryptoapp2024.data.network.DtoClasses.GetFullDataOfCoinsDto.FullDataOfCoinsJsonAnswer
@@ -36,5 +37,18 @@ class Mapper {
 
         Log.d("MainActivity", listOfCoinFullInfoDto.toString())
         return listOfCoinFullInfoDto
+    }
+
+    fun mapCoinFullInfoDtoToCoinFullInfoDb(coinFullInfoDto: CoinFullInfoDto): CoinFullInfoDb {
+        return CoinFullInfoDb(
+            FROMSYMBOL = coinFullInfoDto.fromsymbol,
+            LASTMARKET = coinFullInfoDto.lastmarket,
+            PRICE = coinFullInfoDto.price,
+            LASTUPDATE = coinFullInfoDto.lastupdate.toInt(),
+            TOSYMBOL = coinFullInfoDto.tosymbol,
+            HIGHDAY = coinFullInfoDto.highday,
+            LOWDAY = coinFullInfoDto.lowday,
+            IMAGEURL = ApiFactory.BASE_URL + coinFullInfoDto.imageurl
+        )
     }
 }
