@@ -5,6 +5,7 @@ import com.example.cryptoapp2024.data.database.DBmodel.CoinFullInfoDb
 import com.example.cryptoapp2024.data.network.DtoClasses.GetCoinsNameDto.TopCoinsByMarketCapJsonAnswerDto
 import com.example.cryptoapp2024.data.network.DtoClasses.GetFullDataOfCoinsDto.CoinFullInfoDto
 import com.example.cryptoapp2024.data.network.DtoClasses.GetFullDataOfCoinsDto.FullDataOfCoinsJsonAnswer
+import com.example.cryptoapp2024.domain.CoinFullInfo
 import com.google.gson.Gson
 
 class Mapper {
@@ -49,6 +50,19 @@ class Mapper {
             HIGHDAY = coinFullInfoDto.highday,
             LOWDAY = coinFullInfoDto.lowday,
             IMAGEURL = ApiFactory.BASE_URL + coinFullInfoDto.imageurl
+        )
+    }
+
+    fun mapCoinFullInfoDbToCoinFullInfo(coinFullInfoDb: CoinFullInfoDb):CoinFullInfo{
+        return CoinFullInfo(
+            FROMSYMBOL = coinFullInfoDb.FROMSYMBOL,
+            LASTMARKET = coinFullInfoDb.LASTMARKET,
+            PRICE = coinFullInfoDb.PRICE,
+            LASTUPDATE = coinFullInfoDb.LASTUPDATE,
+            TOSYMBOL = coinFullInfoDb.TOSYMBOL,
+            HIGHDAY = coinFullInfoDb.HIGHDAY,
+            LOWDAY = coinFullInfoDb.LOWDAY,
+            IMAGEURL = ApiFactory.BASE_URL + coinFullInfoDb.IMAGEURL
         )
     }
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 
 class GetOneCoinInfoUseCase(private val repository: CoinRepository) {
 
-    operator fun invoke(): LiveData<CoinFullInfo> {
-        return repository.getOneCoinInfo()
+    operator fun invoke(fsym:String): LiveData<CoinFullInfo> {
+        return repository.getOneCoinInfo(fsym)
     }
 }
