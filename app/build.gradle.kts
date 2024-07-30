@@ -58,6 +58,7 @@ dependencies {
 
     //add Retrofit
     implementation (libs.retrofit)
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //add Glide
     implementation (libs.glide)
