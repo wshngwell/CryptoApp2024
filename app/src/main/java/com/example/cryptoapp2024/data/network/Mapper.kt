@@ -7,8 +7,9 @@ import com.example.cryptoapp2024.data.network.DtoClasses.GetFullDataOfCoinsDto.C
 import com.example.cryptoapp2024.data.network.DtoClasses.GetFullDataOfCoinsDto.FullDataOfCoinsJsonAnswer
 import com.example.cryptoapp2024.domain.CoinFullInfo
 import com.google.gson.Gson
+import javax.inject.Inject
 
-class Mapper {
+class Mapper @Inject constructor(){
 
     fun convertListOfNamesToString(names: List<String?>?): String {
         return names?.map {

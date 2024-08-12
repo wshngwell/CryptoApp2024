@@ -2,19 +2,44 @@ package com.example.cryptoapp2024
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.cryptoapp2024.data.network.ApiFactory
-import com.example.cryptoapp2024.data.network.DtoClasses.GetFullDataOfCoinsDto.CoinFullInfoDto
-import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import androidx.lifecycle.ViewModelProvider
+import com.example.cryptoapp2024.presentation.CoinAdapter
+import com.example.cryptoapp2024.presentation.CoinApp
+import com.example.cryptoapp2024.presentation.CoinDetailActivity
+import com.example.cryptoapp2024.presentation.CoinsViewModel
+import com.example.cryptoappaugust2024.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: CoinsViewModel
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+    private val mainComponent by lazy {
+        (application as CoinApp).component
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mainComponent.inject(this)
+
+        viewModel = ViewModelProvider(this)[CoinsViewModel::class.java]
+
+
+        val adapter = CoinAdapter()
+        binding.coinsListRv.adapter = adapter
+
+        viewModel.listOfCoins.observe(this) {
+            adapter.submitList(it)
+        }
+        adapter.onCoinCardListener = {
+            startActivity(
+                CoinDetailActivity.newCoinDetailActivity(this, it.toString())
+            )
+        }
+
+
     }
 }

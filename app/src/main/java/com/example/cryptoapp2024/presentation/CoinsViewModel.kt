@@ -1,26 +1,28 @@
 package com.example.cryptoapp2024.presentation
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.cryptoapp2024.domain.GetCoinFullInfoListUseCase
+import com.example.cryptoapp2024.domain.GetOneCoinInfoUseCase
 import com.example.cryptoapp2024.domain.LoadDataUseCase
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ListOfCoinsViewModel(
+class CoinsViewModel @Inject constructor(
     private val getCoinFullInfoListUseCase: GetCoinFullInfoListUseCase,
+    private val getOneCoinInfoUseCase: GetOneCoinInfoUseCase,
     private val loadDataUseCase: LoadDataUseCase
+
 ) :
     ViewModel() {
-        init {
-            viewModelScope.launch {
-                loadDataUseCase()
-            }
-        }
 
-    fun getCoinFullInfoList(){
-        viewModelScope.launch {
-            getCoinFullInfoListUseCase()
-        }
+
+
+    val listOfCoins = getCoinFullInfoListUseCase()
+
+    fun getOneCoinInfo(fsym: String) = getOneCoinInfoUseCase(fsym)
+
+    init {
+        loadDataUseCase()
     }
+
 
 }

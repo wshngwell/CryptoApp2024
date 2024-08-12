@@ -7,7 +7,7 @@ object ApiFactory {
 
     const val BASE_URL = "https://min-api.cryptocompare.com/"
 
-    val retrofit = Retrofit.Builder()
+    private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl(BASE_URL)
         .build()

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CryptoApp2024</string>
+    <string name="priceLabel">Цена: </string>
+    <string name="minimumPriceLabel">Минимум за день: </string>
+    <string name="maximumPriceLabel">Максимум за день: </string>
+    <string name="lastDealLabel">Последняя сделка: </string>
+    <string name="updateTimeLabel">Обновлено: </string>
+    <string name="timeOflastUpdate">Время последнего обновления: %s</string>
 </resources>

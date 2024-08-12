@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.cryptoapp2024.data.database.DBmodel.CoinFullInfoDb
 
-@Database(entities = [CoinFullInfoDb::class], version = 1)
+@Database(entities = [CoinFullInfoDb::class], version = 1, exportSchema = false)
 abstract class CryptoDataBase : RoomDatabase() {
 
     abstract fun getCryptoDao(): CryptoDao

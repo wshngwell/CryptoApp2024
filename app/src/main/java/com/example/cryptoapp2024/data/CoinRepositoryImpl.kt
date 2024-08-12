@@ -10,8 +10,9 @@ import com.example.cryptoapp2024.data.network.Mapper
 import com.example.cryptoapp2024.data.worker.RefreshDataWorker
 import com.example.cryptoapp2024.domain.CoinFullInfo
 import com.example.cryptoapp2024.domain.CoinRepository
+import javax.inject.Inject
 
-class CoinRepositoryImpl(
+class CoinRepositoryImpl @Inject constructor(
     private val mapper: Mapper,
     private val application: Application,
     private val cryptoDao: CryptoDao,
@@ -28,7 +29,7 @@ class CoinRepositoryImpl(
 
     override fun getOneCoinInfo(fsym: String): LiveData<CoinFullInfo> =
         MediatorLiveData<CoinFullInfo>().apply {
-            addSource(cryptoDao.getOneCoinFullInfo(fsym)){
+            addSource(cryptoDao.getOneCoinFullInfo(fsym)) {
                 mapper.mapCoinFullInfoDbToCoinFullInfo(it)
             }
         }

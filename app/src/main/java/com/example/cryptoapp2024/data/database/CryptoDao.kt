@@ -12,12 +12,12 @@ import javax.inject.Inject
 @Dao
 interface CryptoDao {
 
-   @Query("SELECT * FROM COIN_FULL_INFO")
-    fun getCoinsFullInfoList():LiveData<List<CoinFullInfoDb>>
+    @Query("SELECT * FROM COIN_FULL_INFO")
+     fun getCoinsFullInfoList(): LiveData<List<CoinFullInfoDb>>
 
     @Query("SELECT * FROM COIN_FULL_INFO WHERE FROMSYMBOL=:fsym")
-    fun getOneCoinFullInfo(fsym:String):LiveData<CoinFullInfoDb>
+     fun getOneCoinFullInfo(fsym: String): LiveData<CoinFullInfoDb>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addCoinFullInfoList(list:List<CoinFullInfoDb>)
+    suspend fun addCoinFullInfoList(list: List<CoinFullInfoDb>)
 }
