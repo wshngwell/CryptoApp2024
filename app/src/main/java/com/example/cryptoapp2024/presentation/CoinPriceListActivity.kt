@@ -3,6 +3,7 @@ package com.example.cryptoapp2024.presentation
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.cryptoappaugust2024.databinding.ActivityMainBinding
 import javax.inject.Inject
@@ -38,6 +39,7 @@ class CoinPriceListActivity : AppCompatActivity() {
                         binding.fragmentHorizontalContainer!!.id,
                         CoinDetailFragment.createCoinDetailFragment(it.toString())
                     )
+                    .addToBackStack(COIN_DETAIL_FRAGMENT)
                     .commit()
             }
 
@@ -56,5 +58,18 @@ class CoinPriceListActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportFragmentManager.popBackStack(
+            COIN_DETAIL_FRAGMENT,
+            FragmentManager.POP_BACK_STACK_INCLUSIVE
+        )
+
+    }
+
+    companion object {
+        private const val COIN_DETAIL_FRAGMENT = "CoinDetailFragment"
     }
 }
