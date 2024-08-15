@@ -6,7 +6,7 @@ import androidx.work.Configuration
 import com.example.cryptoapp2024.di.DaggerApplicationComponent
 import javax.inject.Inject
 
-class CoinApp : Application(),Configuration.Provider {
+class CoinApp : Application(), Configuration.Provider {
 
 
     @Inject

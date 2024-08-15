@@ -26,22 +26,33 @@ class CoinPriceListActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         mainComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         val adapter = CoinAdapter(this)
-        binding.coinsListRv.adapter = adapter
+        if (binding.coinsListRvHorizontal != null) {
+            binding.coinsListRvHorizontal?.adapter = adapter
+            adapter.onCoinCardListener = {
+                supportFragmentManager.beginTransaction()
+                    .replace(
+                        binding.fragmentHorizontalContainer!!.id,
+                        CoinDetailFragment.createCoinDetailFragment(it.toString())
+                    )
+                    .commit()
+            }
+
+        } else {
+            binding.coinsListRv?.adapter = adapter
+            adapter.onCoinCardListener = {
+                startActivity(
+                    CoinDetailActivity.newCoinDetailActivity(this, it.toString())
+                )
+            }
+        }
 
         viewModel.listOfCoins.observe(this) {
             Log.d("MainActivity", "$it")
             adapter.submitList(it)
-        }
-        adapter.onCoinCardListener = {
-            startActivity(
-                CoinDetailActivity.newCoinDetailActivity(this, it.toString())
-            )
         }
 
 

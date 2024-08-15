@@ -38,7 +38,7 @@ class RefreshDataWorker(
             }
             Log.d("MainActivity", listOfCoinFullInfoDb.toString())
             cryptoDao.addCoinFullInfoList(listOfCoinFullInfoDb)
-            delay(10000)
+            delay(20000)
         }
     }
 

@@ -5,9 +5,9 @@ data class CoinFullInfo(
     var FROMSYMBOL: String?,
     var TOSYMBOL: String?,
     var LASTMARKET: String? = null,
-    var PRICE: Double? = null,
+    var PRICE: String? = null,
     var LASTUPDATE: String? = null,
-    var HIGHDAY: Double? = null,
-    var LOWDAY: Double? = null,
+    var HIGHDAY: String? = null,
+    var LOWDAY: String? = null,
     var IMAGEURL: String? = null
 )

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.cryptoappaugust2024.databinding.DetailCoinFragmentBinding
+import javax.inject.Inject
 
 class CoinDetailFragment : Fragment() {
 
@@ -15,9 +16,18 @@ class CoinDetailFragment : Fragment() {
     val binding: DetailCoinFragmentBinding
         get() = _binding ?: throw RuntimeException("Binding is null")
 
-    private val viewModel by lazy {
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
-        ViewModelProvider.create(this)[CoinsViewModel::class]
+
+    private val viewModel by lazy {
+        ViewModelProvider.create(this, viewModelFactory)[CoinsViewModel::class]
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        (requireActivity().application as CoinApp).component.inject(this)
+        super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(

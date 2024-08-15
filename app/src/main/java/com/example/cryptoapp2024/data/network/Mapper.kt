@@ -63,11 +63,11 @@ class Mapper @Inject constructor(){
         val coinInfo =  CoinFullInfo(
             FROMSYMBOL = coinFullInfoDb.FROMSYMBOL,
             LASTMARKET = coinFullInfoDb.LASTMARKET,
-            PRICE = coinFullInfoDb.PRICE,
+            PRICE = ("%.3f".format(coinFullInfoDb.PRICE)),
             LASTUPDATE = convertTimestampToTime(coinFullInfoDb.LASTUPDATE),
             TOSYMBOL = coinFullInfoDb.TOSYMBOL,
-            HIGHDAY = coinFullInfoDb.HIGHDAY,
-            LOWDAY = coinFullInfoDb.LOWDAY,
+            HIGHDAY = ("%.3f".format(coinFullInfoDb.HIGHDAY)),
+            LOWDAY = ("%.3f".format(coinFullInfoDb.LOWDAY)),
             IMAGEURL = coinFullInfoDb.IMAGEURL
         )
 
