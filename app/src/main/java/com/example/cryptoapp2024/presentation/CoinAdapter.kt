@@ -1,6 +1,8 @@
 package com.example.cryptoapp2024.presentation
 
+import android.content.Context
 import android.provider.Settings.Global.getString
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -10,10 +12,12 @@ import com.example.cryptoappaugust2024.R
 import com.example.cryptoappaugust2024.databinding.CardCoinBinding
 import com.example.cryptoappaugust2024.databinding.DetailCoinFragmentBinding
 
-class CoinAdapter : ListAdapter<CoinFullInfo, CoinViewHolder>(DiffUtilCoins()) {
+class CoinAdapter(
+    private val context: Context
+) : ListAdapter<CoinFullInfo, CoinViewHolder>(DiffUtilCoins()) {
 
 
-    var onCoinCardListener : ((String?) -> Unit)? = null
+    var onCoinCardListener: ((String?) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
 
@@ -40,11 +44,14 @@ class CoinAdapter : ListAdapter<CoinFullInfo, CoinViewHolder>(DiffUtilCoins()) {
                 R.string.timeOflastUpdate,
                 currentCoin.LASTUPDATE.toString()
             )
-            Glide.with(root)
+            Glide.with(context)
                 .load(currentCoin.IMAGEURL)
                 .into(imageIdMini)
 
-            onCoinCardListener?.invoke(currentCoin.FROMSYMBOL)
+            holder.binding.root.setOnClickListener {
+                onCoinCardListener?.invoke(currentCoin.FROMSYMBOL)
+            }
+
         }
 
 

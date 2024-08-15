@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="/" />
+            android:text="@string/slash" />
 
         <TextView
             android:id="@+id/toSymbol"
@@ -83,9 +83,9 @@
             android:layout_margin="15dp"
             android:adjustViewBounds="true"
             android:contentDescription=""
-            android:maxWidth="70dp"
-            android:maxHeight="70dp"
-            android:src="@drawable/ic_launcher_background"
+            android:maxWidth="50dp"
+            android:maxHeight="50dp"
+            tools:src="@mipmap/ic_launcher"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

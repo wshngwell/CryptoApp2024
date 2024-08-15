@@ -1,6 +1,8 @@
 package com.example.cryptoapp2024.data
 
 import android.app.Application
+import android.util.Log
+import android.view.animation.Transformation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.work.ExistingWorkPolicy
@@ -21,25 +23,26 @@ class CoinRepositoryImpl @Inject constructor(
     override fun getCoinFullInfoList(): LiveData<List<CoinFullInfo>> =
         MediatorLiveData<List<CoinFullInfo>>().apply {
             addSource(cryptoDao.getCoinsFullInfoList()) {
-                it.map {
-                    mapper.mapCoinFullInfoDbToCoinFullInfo(it)
+                value = it.map {
+                  mapper.mapCoinFullInfoDbToCoinFullInfo(it)
                 }
+
             }
+
         }
 
     override fun getOneCoinInfo(fsym: String): LiveData<CoinFullInfo> =
         MediatorLiveData<CoinFullInfo>().apply {
             addSource(cryptoDao.getOneCoinFullInfo(fsym)) {
-                mapper.mapCoinFullInfoDbToCoinFullInfo(it)
+                value = mapper.mapCoinFullInfoDbToCoinFullInfo(it)
             }
         }
 
     override fun loadData() {
         val workManager = WorkManager.getInstance(application)
-
         workManager.enqueueUniqueWork(
             RefreshDataWorker.REFRESH_DATA,
-            ExistingWorkPolicy.APPEND,
+            ExistingWorkPolicy.REPLACE,
             RefreshDataWorker.getOneTimeWorkRequest()
         )
 

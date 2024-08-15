@@ -1,5 +1,6 @@
 package com.example.cryptoapp2024.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.cryptoapp2024.domain.GetCoinFullInfoListUseCase
 import com.example.cryptoapp2024.domain.GetOneCoinInfoUseCase

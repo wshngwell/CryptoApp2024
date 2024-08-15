@@ -6,4 +6,5 @@
     <string name="lastDealLabel">Последняя сделка: </string>
     <string name="updateTimeLabel">Обновлено: </string>
     <string name="timeOflastUpdate">Время последнего обновления: %s</string>
+    <string name="slash">/</string>
 </resources>

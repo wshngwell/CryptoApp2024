@@ -37,11 +37,11 @@ class Mapper @Inject constructor(){
             }
         }
 
-        Log.d("MainActivity", listOfCoinFullInfoDto.toString())
         return listOfCoinFullInfoDto
     }
 
     fun mapCoinFullInfoDtoToCoinFullInfoDb(coinFullInfoDto: CoinFullInfoDto): CoinFullInfoDb {
+
         return CoinFullInfoDb(
             FROMSYMBOL = coinFullInfoDto.fromsymbol,
             LASTMARKET = coinFullInfoDto.lastmarket,
@@ -50,12 +50,12 @@ class Mapper @Inject constructor(){
             TOSYMBOL = coinFullInfoDto.tosymbol,
             HIGHDAY = coinFullInfoDto.highday,
             LOWDAY = coinFullInfoDto.lowday,
-            IMAGEURL = ApiFactory.BASE_URL + coinFullInfoDto.imageurl
+            IMAGEURL = BASE_IMAGE_URL + coinFullInfoDto.imageurl
         )
     }
 
     fun mapCoinFullInfoDbToCoinFullInfo(coinFullInfoDb: CoinFullInfoDb):CoinFullInfo{
-        return CoinFullInfo(
+        val coinInfo =  CoinFullInfo(
             FROMSYMBOL = coinFullInfoDb.FROMSYMBOL,
             LASTMARKET = coinFullInfoDb.LASTMARKET,
             PRICE = coinFullInfoDb.PRICE,
@@ -63,7 +63,13 @@ class Mapper @Inject constructor(){
             TOSYMBOL = coinFullInfoDb.TOSYMBOL,
             HIGHDAY = coinFullInfoDb.HIGHDAY,
             LOWDAY = coinFullInfoDb.LOWDAY,
-            IMAGEURL = ApiFactory.BASE_URL + coinFullInfoDb.IMAGEURL
+            IMAGEURL = coinFullInfoDb.IMAGEURL
         )
+
+        return coinInfo
+    }
+
+    companion object{
+        const val BASE_IMAGE_URL = "https://cryptocompare.com"
     }
 }
