@@ -7,6 +7,11 @@ import com.example.cryptoapp2024.data.network.DtoClasses.GetFullDataOfCoinsDto.C
 import com.example.cryptoapp2024.data.network.DtoClasses.GetFullDataOfCoinsDto.FullDataOfCoinsJsonAnswer
 import com.example.cryptoapp2024.domain.CoinFullInfo
 import com.google.gson.Gson
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 import javax.inject.Inject
 
 class Mapper @Inject constructor(){
@@ -46,7 +51,7 @@ class Mapper @Inject constructor(){
             FROMSYMBOL = coinFullInfoDto.fromsymbol,
             LASTMARKET = coinFullInfoDto.lastmarket,
             PRICE = coinFullInfoDto.price,
-            LASTUPDATE = coinFullInfoDto.lastupdate.toInt(),
+            LASTUPDATE = coinFullInfoDto.lastupdate,
             TOSYMBOL = coinFullInfoDto.tosymbol,
             HIGHDAY = coinFullInfoDto.highday,
             LOWDAY = coinFullInfoDto.lowday,
@@ -59,7 +64,7 @@ class Mapper @Inject constructor(){
             FROMSYMBOL = coinFullInfoDb.FROMSYMBOL,
             LASTMARKET = coinFullInfoDb.LASTMARKET,
             PRICE = coinFullInfoDb.PRICE,
-            LASTUPDATE = coinFullInfoDb.LASTUPDATE,
+            LASTUPDATE = convertTimestampToTime(coinFullInfoDb.LASTUPDATE),
             TOSYMBOL = coinFullInfoDb.TOSYMBOL,
             HIGHDAY = coinFullInfoDb.HIGHDAY,
             LOWDAY = coinFullInfoDb.LOWDAY,
@@ -67,6 +72,15 @@ class Mapper @Inject constructor(){
         )
 
         return coinInfo
+    }
+    private fun convertTimestampToTime(timestamp: Long?): String {
+        if (timestamp == null) return ""
+        val stamp = Timestamp(timestamp * 1000)
+        val date = Date(stamp.time)
+        val pattern = "HH:mm:ss"
+        val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+        sdf.timeZone = TimeZone.getDefault()
+        return sdf.format(date)
     }
 
     companion object{

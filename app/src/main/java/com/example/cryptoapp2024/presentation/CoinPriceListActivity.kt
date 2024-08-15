@@ -1,18 +1,13 @@
-package com.example.cryptoapp2024
+package com.example.cryptoapp2024.presentation
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.cryptoapp2024.presentation.CoinAdapter
-import com.example.cryptoapp2024.presentation.CoinApp
-import com.example.cryptoapp2024.presentation.CoinDetailActivity
-import com.example.cryptoapp2024.presentation.CoinsViewModel
-import com.example.cryptoapp2024.presentation.ViewModelFactory
 import com.example.cryptoappaugust2024.databinding.ActivityMainBinding
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class CoinPriceListActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory

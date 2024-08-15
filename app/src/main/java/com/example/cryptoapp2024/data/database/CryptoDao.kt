@@ -12,7 +12,7 @@ import javax.inject.Inject
 @Dao
 interface CryptoDao {
 
-    @Query("SELECT * FROM COIN_FULL_INFO")
+    @Query("SELECT * FROM COIN_FULL_INFO ORDER BY PRICE DESC")
      fun getCoinsFullInfoList(): LiveData<List<CoinFullInfoDb>>
 
     @Query("SELECT * FROM COIN_FULL_INFO WHERE FROMSYMBOL=:fsym")

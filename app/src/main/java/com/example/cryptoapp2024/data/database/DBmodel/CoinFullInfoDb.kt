@@ -9,7 +9,7 @@ data class CoinFullInfoDb(
     var TOSYMBOL: String,
     var LASTMARKET: String,
     var PRICE: Double,
-    var LASTUPDATE: Int,
+    var LASTUPDATE: Long,
     var HIGHDAY: Double,
     var LOWDAY: Double,
     var IMAGEURL: String

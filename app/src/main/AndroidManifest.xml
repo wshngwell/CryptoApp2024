@@ -19,7 +19,7 @@
             android:name="com.example.cryptoapp2024.presentation.CoinDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.cryptoapp2024.MainActivity"
+            android:name="com.example.cryptoapp2024.presentation.CoinPriceListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
